@@ -118,5 +118,7 @@ print("\tExplained variance:", explained_variance_score(y_test, y_pred))
 print("\tMean absolute error:", mean_absolute_error(y_test, y_pred))
 print("\tR2 score:", r2_score(y_test, y_pred))
 print()
-def predict():
-    return y_pred
+# def predict(x):
+    # return model.predict(x)
+
+knn_model = model
