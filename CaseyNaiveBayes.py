@@ -172,7 +172,20 @@ def runNaiveBayes(labelCol, bins, labels):
     printResults(df_test, totalOutput, correctOutput, labelCol)
     return df_test, totalOutput, correctOutput, labelCol
 
+def predictWithBayes(df_row, labelMarginals, labelConditionals, label):
+    labelProbabilities = labelMarginals.copy()
 
+    for i in range(len(labelProbabilities)):
+        for j in range(len(df_row)):
+            if(df_row.index[j] != label):
+                x = labelConditionals[i][j]
+                # print(x.loc[df_row[j]][0])
+                # print(df_row[j])
+                if df_row[j] in x:
+                    labelProbabilities[i] *= x.loc[df_row[j]][0]
+    return labelProbabilities.idxmax()
+
+# Found on Kaggle
 def plotBayes(df_test, correctOutput, labelCol):
     plt.rcParams["figure.figsize"] = [7.00, 3.50]
     plt.rcParams["figure.autolayout"] = True
