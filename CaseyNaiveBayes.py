@@ -1,3 +1,6 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Code written to implement Naive Bayes on the county data
 
@@ -185,7 +188,7 @@ def predictWithBayes(df_row, labelMarginals, labelConditionals, label):
                     labelProbabilities[i] *= x.loc[df_row[j]][0]
     return labelProbabilities.idxmax()
 
-def generateNaiveBayesModel(test_set, train_set, labels, labelCol):
+def generateNaiveBayesModel(test_set, train_set, labels, bins, labelCol):
     df_test = pruning_and_binning(test_set, bins, labels, labelCol)
     df_train = pruning_and_binning(train_set, bins, labels, labelCol)
 
@@ -227,3 +230,7 @@ def plotBayes(df_test, correctOutput, labelCol):
     autolabel(rects2)
 
     print(plt.show())
+
+# this, that = generateNaiveBayesModel(stuff)
+# def predict(x):
+#     return predictWithBayes(x, this, that, other_stuff)

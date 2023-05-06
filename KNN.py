@@ -47,7 +47,7 @@ warnings.filterwarnings('ignore')
 
 
 #getting data, showing preview of it
-df = pd.read_csv('acs2017_census_tract_data.csv')
+df = pd.read_csv('archive/acs2017_census_tract_data.csv')
 df.head()
 
 #drop data with zero total population
@@ -102,16 +102,16 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.ensemble import GradientBoostingRegressor
 
-model=  KNeighborsRegressor(8),
+knn_model=  KNeighborsRegressor(8),
 
 
 start = time()
-model.fit(X_train, y_train)
+knn_model.fit(X_train, y_train)
 train_time = time() - start
 start = time()
-y_pred = model.predict(X_test)
+y_pred = knn_model.predict(X_test)
 predict_time = time()-start    
-print(model)
+print(knn_model)
 print("\tTraining time: %0.3fs" % train_time)
 print("\tPrediction time: %0.3fs" % predict_time)
 print("\tExplained variance:", explained_variance_score(y_test, y_pred))
@@ -120,5 +120,3 @@ print("\tR2 score:", r2_score(y_test, y_pred))
 print()
 # def predict(x):
     # return model.predict(x)
-
-knn_model = model

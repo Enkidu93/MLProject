@@ -7,7 +7,7 @@ import numpy as np
 df = pd.read_csv('archive/acs2017_census_tract_data.csv')
 df = df.dropna()
 df = df[['TotalPop', 'Men', 'Women',
-       'Hispanic', 'White', 'Black', 'Native', 'Asian', 'Pacific', 'Citizen',
+       'Hispanic', 'White', 'Black', 'Native', 'Asian', 'Pacific', 'VotingAgeCitizen',
        'IncomePerCap',
        'Professional', 'Service', 'Office', 'Construction',
        'Production', 'Drive', 'Carpool', 'Transit', 'Walk', 'OtherTransp',
