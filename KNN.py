@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 np.set_printoptions(suppress=True,formatter={'float_kind':'{:0.4f}'.format})
 
 import matplotlib.pyplot as plt
-%matplotlib inline
+# %matplotlib inline
 warnings.filterwarnings("ignore")
 
 from sklearn.preprocessing import OrdinalEncoder
@@ -42,7 +42,7 @@ from numpy import arange
 
 from matplotlib import pyplot
 
-%matplotlib inline
+# %matplotlib inline
 warnings.filterwarnings('ignore')
 
 
@@ -118,3 +118,5 @@ print("\tExplained variance:", explained_variance_score(y_test, y_pred))
 print("\tMean absolute error:", mean_absolute_error(y_test, y_pred))
 print("\tR2 score:", r2_score(y_test, y_pred))
 print()
+def predict():
+    return y_pred
