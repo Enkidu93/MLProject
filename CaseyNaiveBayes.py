@@ -185,6 +185,13 @@ def predictWithBayes(df_row, labelMarginals, labelConditionals, label):
                     labelProbabilities[i] *= x.loc[df_row[j]][0]
     return labelProbabilities.idxmax()
 
+def generateNaiveBayesModel(test_set, train_set, labels, labelCol):
+    df_test = pruning_and_binning(test_set, bins, labels, labelCol)
+    df_train = pruning_and_binning(train_set, bins, labels, labelCol)
+
+    label_marg, label_cond = build_naive_bayes_model(df_train, labelCol)
+    return label_marg, label_cond, df_test
+
 # Found on Kaggle
 def plotBayes(df_test, correctOutput, labelCol):
     plt.rcParams["figure.figsize"] = [7.00, 3.50]
