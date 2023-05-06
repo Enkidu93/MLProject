@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 np.set_printoptions(suppress=True,formatter={'float_kind':'{:0.4f}'.format})
 
 import matplotlib.pyplot as plt
-%matplotlib inline
+# %matplotlib inline
 warnings.filterwarnings("ignore")
 
 from sklearn.preprocessing import OrdinalEncoder
@@ -42,7 +42,7 @@ from numpy import arange
 
 from matplotlib import pyplot
 
-%matplotlib inline
+# %matplotlib inline
 warnings.filterwarnings('ignore')
 
 
