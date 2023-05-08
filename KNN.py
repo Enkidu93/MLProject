@@ -38,6 +38,7 @@ from sklearn.metrics import mean_squared_error, r2_score,mean_absolute_error,exp
 from sklearn.preprocessing import PolynomialFeatures
 from sklearn.linear_model import RidgeCV
 from numpy import arange
+from neural_net import train_dataset
 
 
 from matplotlib import pyplot
@@ -47,28 +48,29 @@ warnings.filterwarnings('ignore')
 
 
 #getting data, showing preview of it
-df = pd.read_csv('archive/acs2017_census_tract_data.csv')
-df.head()
+# df = pd.read_csv('archive/acs2017_census_tract_data.csv')
+# df.head()
 
 #drop data with zero total population
-df = df.loc[df['TotalPop'] > 0]
+# df = df.loc[df['TotalPop'] > 0]
 
 #hmm, we have some NaN values. Lets remove these rows from the table as well
-df = df.dropna()
-df[["State","County","TractId","Income", 'TotalPop']].sort_values(by = "Income", ascending = False)
+# df = df.dropna()
+# df[["State","County","TractId","Income", 'TotalPop']].sort_values(by = "Income", ascending = False)
 
-#drop some useless columns
-df= df.drop(['TractId', 'State', 'County','IncomeErr','IncomePerCap','IncomePerCapErr'], axis=1)
-df.head()
+# #drop some useless columns
+# df= df.drop(['TractId', 'State', 'County','IncomeErr','IncomePerCap','IncomePerCapErr'], axis=1)
+# df.head()
 
 #normalization
-to_percent = ['Men','Women','VotingAgeCitizen','Employed']
-df[to_percent] = df[to_percent].div(df["TotalPop"], axis="index")*100
+# to_percent = ['Men','Women','VotingAgeCitizen','Employed']
+# df[to_percent] = df[to_percent].div(df["TotalPop"], axis="index")*100
 
 
 #split data into test and validation set
-X= df.drop(["Income"], axis=1)
-y= df.Income
+X= train_dataset.drop(columns=['IncomePerCap'])
+# print(X, X.columns)
+y= train_dataset.IncomePerCap
 from sklearn.model_selection import train_test_split
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=0)
@@ -94,6 +96,7 @@ pipe95 = Pipeline(steps=[
              ("imputer", SimpleImputer()),
              ("pca", pca95)])
 X_train= pipe95.fit_transform(X_train)
+# print(X_train, X_train.shape)
 X_test= pipe95.transform(X_test)
 from sklearn.metrics import explained_variance_score,mean_absolute_error,r2_score
 from sklearn.naive_bayes import GaussianNB
@@ -102,7 +105,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.ensemble import GradientBoostingRegressor
 
-knn_model=  KNeighborsRegressor(8),
+knn_model=  KNeighborsRegressor(8)
 
 
 start = time()
